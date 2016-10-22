@@ -19,4 +19,10 @@ router.get('/contact', function(req, res){
   });
 });
 
+router.get('/video', function(req, res){
+  res.render('viewer', {
+    title: 'Player'
+  });
+});
+
 module.exports = router;
