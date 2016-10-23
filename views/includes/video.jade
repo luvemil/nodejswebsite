@@ -31,8 +31,12 @@ script.
   function onPlayerReady(event) {
     // Define socket here since they need the player to be ready
     socket.on('playNow', () => {
-      console.log("Recieved playNow signal");
-      playVideo();
+      console.log("Received playNow signal");
+      player.playVideo();
+    });
+    socket.on('pauseNow', () => {
+      console.log("Received pauseNow signal");
+      player.pauseVideo();
     });
   }
 
@@ -50,5 +54,5 @@ script.
     player.playVideo();
   }
 
-button(onclick="socket.emit('ButtonPress', {foo: 'bar'})").
-  Play
+button(onclick="socket.emit('playpausePress', {status: player.getPlayerState()})").
+  Play/Pause
