@@ -38,6 +38,10 @@ script.
       console.log("Received pauseNow signal");
       player.pauseVideo();
     });
+    socket.on('loadNewVideo', (data)=> {
+      console.log("Received loadNewVideo signal");
+      player.loadVideoById(data.id);
+    });
   }
 
   // 5. The API calls this function when the player's state changes.
@@ -56,3 +60,16 @@ script.
 
 button(onclick="socket.emit('playpausePress', {status: player.getPlayerState()})").
   Play/Pause
+
+form(action="")
+  input(id="m" autocomplete="off")
+  button.
+    Send
+
+script(src="http://code.jquery.com/jquery-1.11.1.js")
+script.
+  $('form').submit(function(){
+    socket.emit('newVideoId', $('#m').val());
+    $('#m').val('');
+    return false;
+  });

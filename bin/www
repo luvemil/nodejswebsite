@@ -107,6 +107,13 @@ io.on('connection', function (socket) {
       io.emit('playNow', { for: 'everyone' });
     }
   });
+  socket.on('newVideoId', function (id) {
+    console.log("Received newVideoId");
+    io.emit('loadNewVideo', {
+      for: 'everyone',
+      id: id
+    });
+  });
   socket.on('disconnect', function (data) {
     console.log('client disconnected');
   });
