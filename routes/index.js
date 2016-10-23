@@ -13,4 +13,12 @@ router.get('/video', function(req, res){
   });
 });
 
+router.get('/video/:videoid', function(req, res){
+  var vid = req.params.videoid;
+  res.render('viewer', {
+    title: 'Player',
+    videoid: vid
+  });
+});
+
 module.exports = router;
