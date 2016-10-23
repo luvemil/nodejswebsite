@@ -10,6 +10,16 @@ var users = require('./routes/users');
 
 var app = express();
 
+// setup stylus
+var bootstrap = require('bootstrap3-stylus');
+var stylus = require('stylus');
+
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(bootstrap());
+}
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -20,7 +30,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(require('stylus').middleware(path.join(__dirname, 'public')));
+app.use(stylus.middleware({
+  src: path.join(__dirname, 'public'),
+  compile: compile
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
