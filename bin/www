@@ -101,14 +101,13 @@ io.on('connection', function (socket) {
   socket.on('logevent', function (data) {
     console.log(data);
   });
-  socket.on('playpausePress', function (data) {
-    console.log("Received playpausePress");
-    var status = data.status;
-    if (status === 1){
-      io.emit('pauseNow', {for: 'everyone'});
-    } else {
-      io.emit('playNow', { for: 'everyone' });
-    }
+  socket.on('pausePress', function (data) {
+    console.log("Received pausePress");
+    io.emit('pauseNow', {for: 'everyone'});
+  });
+  socket.on('playPress', function (data) {
+    console.log("Received playPress");
+    io.emit('playNow', { for: 'everyone' });
   });
   socket.on('newVideoId', function (id) {
     console.log("Received newVideoId");

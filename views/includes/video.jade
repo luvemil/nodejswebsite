@@ -72,8 +72,11 @@ script.
     player.playVideo();
   }
 
-button(onclick="socket.emit('playpausePress', {status: player.getPlayerState()})").
-  Play/Pause
+button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").
+  Play
+
+button(onclick="socket.emit('pausePress',{status:player.getPlayerState()})").
+  Pause
 
 button(onclick="socket.emit('syncPress', {sec: player.getCurrentTime(), status: player.getPlayerState()})").
   Sync
