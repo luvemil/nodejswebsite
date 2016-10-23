@@ -92,8 +92,13 @@ function onListening() {
 //setup socket.io
 var io = require('socket.io')(server);
 
+var videoData = {id: 'jZxzz-N3oxM'};
+
 io.on('connection', function (socket) {
-  console.log('client connected')
+  console.log('client connected');
+  socket.on('updateVideoId', function (data) {
+    socket.emit('loadNewVideo', {id: videoData.id});
+  });
   socket.emit('news', { hello: 'world' });
   socket.on('logevent', function (data) {
     console.log(data);
@@ -109,6 +114,7 @@ io.on('connection', function (socket) {
   });
   socket.on('newVideoId', function (id) {
     console.log("Received newVideoId");
+    videoData.id = id;
     io.emit('loadNewVideo', {
       for: 'everyone',
       id: id

@@ -50,6 +50,7 @@ script.
       console.log("Received seekVideoTo signal");
       player.seekTo(data.sec);
     });
+    socket.emit('updateVideoId');
   }
 
   // 5. The API calls this function when the player's state changes.
