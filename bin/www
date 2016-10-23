@@ -93,12 +93,16 @@ function onListening() {
 var io = require('socket.io')(server);
 
 io.on('connection', function (socket) {
+  console.log('client connected')
   socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
+  socket.on('logevent', function (data) {
     console.log(data);
   });
   socket.on('ButtonPress', function (data) {
     console.log("Received ButtonPress");
-    socket.emit('playNow', { foo: 'bar' });
+    io.emit('playNow', { for: 'everyone' });
+  });
+  socket.on('disconnect', function (data) {
+    console.log('client disconnected');
   });
 });
