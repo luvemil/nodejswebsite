@@ -7,18 +7,6 @@ router.get('/', function(req, res){
   });
 });
 
-router.get('/about', function(req, res){
-  res.render('index', {
-    title: 'About'
-  });
-});
-
-router.get('/contact', function(req, res){
-  res.render('index', {
-    title: 'Contact'
-  });
-});
-
 router.get('/video', function(req, res){
   res.render('viewer', {
     title: 'Player'
