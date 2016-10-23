@@ -9,7 +9,8 @@ router.get('/', function(req, res){
 
 router.get('/video', function(req, res){
   res.render('viewer', {
-    title: 'Player'
+    title: 'Player',
+    videoid: 'jZxzz-N3oxM'
   });
 });
 
