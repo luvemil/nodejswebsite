@@ -7,6 +7,8 @@ script.
 
   var socket = io();
 
+  var currentVideo = "#{videoid}";
+
   tag.src = "https://www.youtube.com/iframe_api";
   var firstScriptTag = document.getElementsByTagName('script')[0];
   firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -18,7 +20,7 @@ script.
     player = new YT.Player('player', {
       height: '390',
       width: '640',
-      videoId: "#{videoid}",
+      videoId: currentVideo,
       origin: 'http://localhost/',
       events: {
         'onReady': onPlayerReady,
@@ -40,7 +42,9 @@ script.
     });
     socket.on('loadNewVideo', (data) => {
       console.log("Received loadNewVideo signal");
+      currentVideo=data.id;
       player.loadVideoById(data.id);
+      $('#m').val(currentVideo);
     });
     socket.on('resetVideo', () => {
       console.log("Received resetVideo signal");
@@ -50,6 +54,8 @@ script.
       console.log("Received seekVideoTo signal");
       player.seekTo(data.sec);
     });
+    // Fix player name
+    $('#m').val(currentVideo);
   }
 
   // 5. The API calls this function when the player's state changes.
@@ -84,6 +90,8 @@ script(src="http://code.jquery.com/jquery-1.11.1.js")
 script.
   $('form').submit(function(){
     socket.emit('newVideoId', $('#m').val());
-    $('#m').val('');
     return false;
+  });
+  $('#m').focusout(function() {
+    $('#m').val(currentVideo);
   });
