@@ -56,7 +56,7 @@ script.
   //    The function indicates that when playing a video (state=1),
   //    the player should play for six seconds and then stop.
   function onPlayerStateChange(event) {
-    socket.emit('logevent', { status: event.data });
+  // socket.emit('logevent', { status: event.data });
   }
   function stopVideo() {
     player.stopVideo();
