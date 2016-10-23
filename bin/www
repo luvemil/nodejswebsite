@@ -92,9 +92,12 @@ function onListening() {
 //setup socket.io
 var io = require('socket.io')(server);
 
+var people = 0;
+
 io.on('connection', function (socket) {
-  console.log('client connected')
-  socket.emit('news', { hello: 'world' });
+  console.log('client connected');
+  people += 1;
+  console.log("#Users: "+people);
   socket.on('logevent', function (data) {
     console.log(data);
   });
@@ -120,6 +123,7 @@ io.on('connection', function (socket) {
       for: 'everyone',
       sec: data.sec
     });
+    console.log("#Users: "+people);
   });
   socket.on('resetPress', function(data) {
     console.log("Received resetPress");
@@ -127,5 +131,13 @@ io.on('connection', function (socket) {
   });
   socket.on('disconnect', function (data) {
     console.log('client disconnected');
+    people -= 1;
+    console.log("#Users: "+people);
   });
 });
+
+/*
+setInterval(2000, function() {
+  console.log("#Users: "+people);
+});
+*/
