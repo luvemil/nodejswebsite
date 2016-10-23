@@ -114,6 +114,17 @@ io.on('connection', function (socket) {
       id: id
     });
   });
+  socket.on('syncPress', function(data) {
+    console.log("Received syncPress");
+    io.emit('seekVideoTo', {
+      for: 'everyone',
+      sec: data.sec
+    });
+  });
+  socket.on('resetPress', function(data) {
+    console.log("Received resetPress");
+    io.emit('resetVideo', {for: 'everyone'});
+  });
   socket.on('disconnect', function (data) {
     console.log('client disconnected');
   });

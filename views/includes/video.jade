@@ -38,9 +38,17 @@ script.
       console.log("Received pauseNow signal");
       player.pauseVideo();
     });
-    socket.on('loadNewVideo', (data)=> {
+    socket.on('loadNewVideo', (data) => {
       console.log("Received loadNewVideo signal");
       player.loadVideoById(data.id);
+    });
+    socket.on('resetVideo', () => {
+      console.log("Received resetVideo signal");
+      player.seekTo(0);
+    });
+    socket.on('seekVideoTo', (data) => {
+      console.log("Received seekVideoTo signal");
+      player.seekTo(data.sec);
     });
   }
 
@@ -60,6 +68,12 @@ script.
 
 button(onclick="socket.emit('playpausePress', {status: player.getPlayerState()})").
   Play/Pause
+
+button(onclick="socket.emit('syncPress', {sec: player.getCurrentTime(), status: player.getPlayerState()})").
+  Sync
+
+button(onclick="socket.emit('resetPress', {status: player.getPlayerState()})").
+  Reset
 
 form(action="")
   input(id="m" autocomplete="off")
