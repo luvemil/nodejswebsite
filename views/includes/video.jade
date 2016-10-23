@@ -86,6 +86,9 @@ form(action="")
   button.
     Send
 
+button(onclick="socket.emit('newVideoId', currentVideo)").
+  SendCurrent
+
 script(src="http://code.jquery.com/jquery-1.11.1.js")
 script.
   $('form').submit(function(){
