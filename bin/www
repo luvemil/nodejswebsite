@@ -135,9 +135,3 @@ io.on('connection', function (socket) {
     console.log("#Users: "+people);
   });
 });
-
-/*
-setInterval(2000, function() {
-  console.log("#Users: "+people);
-});
-*/
