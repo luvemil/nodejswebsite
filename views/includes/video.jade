@@ -1,4 +1,5 @@
-#player
+.embed-responsive
+#player.embed-responsive-item
 
 script(src="/socket.io/socket.io.js")
 script.
@@ -18,8 +19,8 @@ script.
   var player;
   function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-      height: '390',
-      width: '640',
+      //height: '390',
+      //width: '640',
       videoId: currentVideo,
       origin: 'http://localhost/',
       events: {
@@ -71,30 +72,3 @@ script.
   function playVideo() {
     player.playVideo();
   }
-
-button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").
-  Play
-
-button(onclick="socket.emit('pausePress',{status:player.getPlayerState()})").
-  Pause
-
-button(onclick="socket.emit('syncPress', {sec: player.getCurrentTime(), status: player.getPlayerState()})").
-  Sync
-
-button(onclick="socket.emit('resetPress', {status: player.getPlayerState()})").
-  Reset
-
-form(action="")
-  input(id="m" autocomplete="off")
-  button.
-    Send
-
-button(onclick="socket.emit('newVideoId', currentVideo)").
-  SendCurrent
-
-script(src="http://code.jquery.com/jquery-1.11.1.js")
-script.
-  $('form').submit(function(){
-    socket.emit('newVideoId', $('#m').val());
-    return false;
-  });

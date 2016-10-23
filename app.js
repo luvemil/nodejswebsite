@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var app = express();
 
 // setup stylus
-var bootstrap = require('bootstrap3-stylus');
+var bootstrap = require('bootstrap-styl');
 var stylus = require('stylus');
 
 function compile(str, path) {

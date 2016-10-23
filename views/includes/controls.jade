@@ -1,0 +1,29 @@
+.col-md-7
+  button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").btn.btn-default.
+    Play
+
+  button(onclick="socket.emit('pausePress',{status:player.getPlayerState()})").btn.btn-default.
+    Pause
+
+  button(onclick="socket.emit('syncPress', {sec: player.getCurrentTime(), status: player.getPlayerState()})").btn.btn-default.
+    Sync
+
+  button(onclick="socket.emit('resetPress', {status: player.getPlayerState()})").btn.btn-default.
+    Reset
+
+  button(onclick="socket.emit('newVideoId', {id:currentVideo})").btn.btn-default.
+    SendC
+
+.col-md-5
+  form(action="").form-inline
+    .form-group
+      input(id="m" autocomplete="off").form-control
+    button.btn.btn-default.
+      Send
+
+script(src="http://code.jquery.com/jquery-1.11.1.js")
+script.
+  $('form').submit(function(){
+    socket.emit('newVideoId', $('#m').val());
+    return false;
+  });
