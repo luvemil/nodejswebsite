@@ -1,4 +1,4 @@
-.col-md-7
+.col-md-6
   .btn-group
     button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").btn.btn-default
       span.glyphicon.glyphicon-play
@@ -15,17 +15,23 @@
     button(onclick="socket.emit('newVideoId', {id:currentVideo})").btn.btn-default
       span.glyphicon.glyphicon-upload
 
-.col-md-5
+.col-md-6
   form(action="").form-inline
-    .input-group
-      input(
-        id="m"
-        autocomplete="off"
-        onFocus="this.select()"
-      ).form-control
-      .input-group-btn
-        button.btn.btn-default.
-          Send
+    .form-group
+      .input-group
+        input(
+          id="m"
+          autocomplete="off"
+          onFocus="this.select()"
+        ).form-control
+        .input-group-btn
+          button(type="submit").btn.btn-default.form-control.
+            Send
+          button(
+            type="button"
+            onclick="$('#m').val(currentVideo)"
+          ).btn.btn-default
+            span.glyphicon.glyphicon-download
 
 script(src="http://code.jquery.com/jquery-1.11.1.js")
 script.
