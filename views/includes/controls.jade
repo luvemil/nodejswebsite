@@ -1,6 +1,6 @@
 .col-md-7
-  button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").btn.btn-default.
-    Play
+  button(onclick="socket.emit('playPress', {status: player.getPlayerState()})").btn.btn-default
+    span.glyphicon.glyphicon-play
 
   button(onclick="socket.emit('pausePress',{status:player.getPlayerState()})").btn.btn-default.
     Pause
