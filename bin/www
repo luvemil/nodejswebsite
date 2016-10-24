@@ -109,11 +109,11 @@ io.on('connection', function (socket) {
     console.log("Received playPress");
     io.emit('playNow', { for: 'everyone' });
   });
-  socket.on('newVideoId', function (id) {
+  socket.on('newVideoId', function (data) {
     console.log("Received newVideoId");
     io.emit('loadNewVideo', {
       for: 'everyone',
-      id: id
+      id: data.id
     });
   });
   socket.on('syncPress', function(data) {
