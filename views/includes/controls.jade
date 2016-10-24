@@ -26,6 +26,6 @@
 script(src="http://code.jquery.com/jquery-1.11.1.js")
 script.
   $('form').submit(function(){
-    socket.emit('newVideoId', $('#m').val());
+    socket.emit('newVideoId', {id: $('#m').val()});
     return false;
   });
