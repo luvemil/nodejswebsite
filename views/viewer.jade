@@ -5,8 +5,9 @@ block content
     .col-md-12
       .well
         .row
-          .col-md-7
-            include ./includes/video.jade
-        .row
-          .col-md-7
-            include ./includes/controls.jade
+          .col-md-7#playercontainer
+            .row
+              .col-md-12
+                include ./includes/video.jade
+            .row
+              include ./includes/controls.jade

@@ -15,6 +15,23 @@
     button(onclick="socket.emit('newVideoId', {id:currentVideo})").btn.btn-default
       span.glyphicon.glyphicon-upload
 
+    button(onclick="toggleView()").btn.btn-default
+      span.glyphicon.glyphicon-resize-full#resizeicon
+
+script.
+  var btn_status = 0;
+  function toggleView() {
+    if (btn_status === 0) {
+      $('#playercontainer').removeClass('col-md-7 col-md-12').addClass('col-md-12');
+      $('#resizeicon').attr('class', 'glyphicon glyphicon-resize-small');
+      btn_status = 1;
+    } else {
+      $('#playercontainer').removeClass('col-md-7 col-md-12').addClass('col-md-7');
+      $('#resizeicon').attr('class', 'glyphicon glyphicon-resize-full');
+      btn_status = 0;
+    }
+  }
+
 .col-md-6
   form(action="").form-inline
     .form-group
