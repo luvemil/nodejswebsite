@@ -94,6 +94,10 @@ var io = require('socket.io')(server);
 
 var people = 0;
 
+var currentvid = 'jZxzz-N3oxM';
+
+exports.currentvid = currentvid;
+
 io.on('connection', function (socket) {
   console.log('client connected');
   people += 1;
@@ -111,6 +115,7 @@ io.on('connection', function (socket) {
   });
   socket.on('newVideoId', function (data) {
     console.log("Received newVideoId");
+    exports.currentvid = data.id;
     io.emit('loadNewVideo', {
       for: 'everyone',
       id: data.id
