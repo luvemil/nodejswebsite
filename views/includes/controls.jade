@@ -18,7 +18,11 @@
 .col-md-5
   form(action="").form-inline
     .input-group
-      input(id="m" autocomplete="off").form-control
+      input(
+        id="m"
+        autocomplete="off"
+        onFocus="this.select()"
+      ).form-control
       .input-group-btn
         button.btn.btn-default.
           Send
