@@ -10,14 +10,27 @@
       onclick="socket.emit('syncPress', {sec: player.getCurrentTime(), status: player.getPlayerState()})"
       data-toggle="tooltip"
       data-placement="bottom"
+      data-container="body"
       title="Sync Playback"
     ).btn.btn-default
       span.glyphicon.glyphicon-refresh
 
-    button(onclick="socket.emit('resetPress', {status: player.getPlayerState()})").btn.btn-default
+    button(
+      onclick="socket.emit('resetPress', {status: player.getPlayerState()})"
+      data-toggle="tooltip"
+      data-placement="bottom"
+      data-container="body"
+      title="Restart Playback"
+    ).btn.btn-default
       span.glyphicon.glyphicon-repeat
 
-    button(onclick="socket.emit('newVideoId', {id:currentVideo})").btn.btn-default
+    button(
+      onclick="socket.emit('newVideoId', {id:currentVideo})"
+      data-toggle="tooltip"
+      data-placement="bottom"
+      data-container="body"
+      title="Send Current Video"
+    ).btn.btn-default
       span.glyphicon.glyphicon-upload
 
     button(onclick="toggleView()").btn.btn-default
@@ -52,11 +65,15 @@ script.
           button(
             type="button"
             onclick="$('#m').val(currentVideo)"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            data-container="body"
+            title="Get Current Video ID"
           ).btn.btn-default
             span.glyphicon.glyphicon-download
 
 script(src="http://code.jquery.com/jquery-1.11.1.min.js")
-//script(src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js")
+script(src="/javascripts/bootstrap.min.js")
 script.
   $('form').submit(function(){
     socket.emit('newVideoId', {id: $('#m').val()});
@@ -65,6 +82,4 @@ script.
 
 // Activate tooltips
 script.
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip({container: ''})
-  })
+  $('[data-toggle="tooltip"]').tooltip()
