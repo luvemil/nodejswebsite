@@ -9,7 +9,7 @@ router.get('/', function(req, res){
 
 router.get('/video', function(req, res){
   res.render('viewer', {
-    title: 'Player',
+    title: 'SyncPlayer',
     videoid: 'jZxzz-N3oxM'
   });
 });
@@ -17,8 +17,17 @@ router.get('/video', function(req, res){
 router.get('/video/:videoid', function(req, res){
   var vid = req.params.videoid;
   res.render('viewer', {
-    title: 'Player',
+    title: 'SyncPlayer',
     videoid: vid
+  });
+});
+
+var sdata = require('../bin/www')
+
+router.get('/current', function(req, res){
+  res.render('viewer', {
+    title: 'SyncPlayer',
+    videoid: sdata.currentvid
   });
 });
 
